@@ -5,7 +5,6 @@ import { subDays, isAfter, formatDistance, max } from 'date-fns'
 import { Octokit } from 'octokit'
 import terminalLink from 'terminal-link'
 import { Command } from 'commander'
-import { version } from './package.json'
 
 // Octokit is using the experimental node:fetch api so in order to not have
 // warnings in the console we set this env variable
@@ -17,7 +16,7 @@ const program = new Command()
 program
   .name('github-pulse-overview')
   .description('CLI to easily get an overview of the pulse of one or multiple repositories on GitHub')
-  .version(version)
+  .version(process.env.npm_package_version)
   .option('-t, --token <string>', 'The GitHub token to use for authentication, only needed for private repositories')
   .option(
     '-f, --file <string>',
