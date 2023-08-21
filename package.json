@@ -9,6 +9,7 @@
   "homepage": "https://github.com/westh/github-pulse-overview#readme",
   "type": "module",
   "version": "0.0.0",
+  "bin": "./main.js",
   "main": "main.js",
   "scripts": {
     "run": "node main.js",
@@ -29,5 +30,13 @@
   },
   "lint-staged": {
     "*.{js}": "prettier --write"
-  }
+  },
+  "keywords": [
+    "gitub",
+    "pulse",
+    "overview",
+    "repositories",
+    "🤷‍♂️",
+    "TLM is a trap, or is it? I guess we'll never know."
+  ]
 }
