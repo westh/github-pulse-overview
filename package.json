@@ -8,7 +8,7 @@
   },
   "homepage": "https://github.com/westh/github-pulse-overview#readme",
   "type": "module",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "bin": "./main.js",
   "main": "main.js",
   "scripts": {

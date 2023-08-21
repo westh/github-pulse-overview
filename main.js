@@ -16,7 +16,7 @@ const program = new Command()
 program
   .name('github-pulse-overview')
   .description('CLI to easily get an overview of the pulse of one or multiple repositories on GitHub')
-  .version(process.env.npm_package_version)
+  .version('0.0.4')
   .option('-t, --token <string>', 'The GitHub token to use for authentication, only needed for private repositories')
   .option(
     '-f, --file <string>',
