@@ -1,0 +1,33 @@
+{
+  "name": "github-pulse-overview",
+  "author": "westh",
+  "license": "MIT",
+  "description": "A simple CLI tool to get an overview of the pulse of one or multiple repositories hosted on GitHub",
+  "bugs": {
+    "url": "https://github.com/westh/github-pulse-overview/issues"
+  },
+  "homepage": "https://github.com/westh/github-pulse-overview#readme",
+  "type": "module",
+  "version": "0.0.0",
+  "main": "main.js",
+  "scripts": {
+    "run": "node main.js",
+    "test": "node main.js -f example.json",
+    "prepare": "husky install"
+  },
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "commander": "^11.0.0",
+    "date-fns": "^2.30.0",
+    "octokit": "^3.1.0",
+    "terminal-link": "^3.0.0"
+  },
+  "devDependencies": {
+    "husky": ">=6",
+    "lint-staged": ">=10",
+    "prettier": "^3.0.2"
+  },
+  "lint-staged": {
+    "*.{js}": "prettier --write"
+  }
+}
