@@ -1,17 +1,23 @@
 #!/usr/bin/env node
 
+import path from 'node:path'
 import chalk from 'chalk'
+import { Command } from 'commander'
 import { subDays, isAfter, formatDistance, max } from 'date-fns'
 import { Octokit } from 'octokit'
 import terminalLink from 'terminal-link'
-import { Command } from 'commander'
-
-// Octokit is using the experimental node:fetch api so in order to not have
-// warnings in the console we set this env variable
-process.env.NODE_NO_WARNINGS = 1
 
 const log = console.log
 const program = new Command()
+
+// Octokit is using the experimental node:fetch api so in order to not have
+// warnings in the console we set this env variable
+const { emit: originalEmit } = process
+function suppresser(event, error) {
+  const isExperimentalWarning = event === 'warning' && error.name === 'ExperimentalWarning'
+  return !isExperimentalWarning && originalEmit.apply(process, arguments)
+}
+process.emit = suppresser
 
 program
   .name('github-pulse-overview')
@@ -118,7 +124,7 @@ async function main() {
   const octokit = new Octokit({ auth: token })
   const reposToCheck = file
     ? (
-        await import(file.includes('/') ? file : `./${file}`, {
+        await import(path.resolve(process.cwd(), file), {
           assert: {
             type: 'json',
           },
@@ -153,6 +159,8 @@ async function main() {
 
     if (foramttedResponse.every(({ data }) => !data.length)) {
       log(`  No changes proposed or made within the last week`)
+      const isLastRepo = repo === reposToCheck.at(-1)
+      if (!isLastRepo) log('')
       continue
     }
 
